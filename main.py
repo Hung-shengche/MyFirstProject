@@ -9,7 +9,7 @@ import pyodbc
 import json
 from PIL import Image, ImageTk
 import io
-
+from tkinter import PhotoImage
 
 # #■■■■■■■■■■■創建伺服器連線■■■■■■■■■■■■■
 #以下是使用工坊電腦才適用的參數
@@ -27,8 +27,9 @@ import io
 #以上是使用工坊電腦才適用的參數
 
 #在微軟的surface的電腦測試用做法
-conn = pyodbc.connect("driver={SQL Server};server=DESKTOP-542TC90;database=wokershop;uid=ABC;pwd=12345")  #創建連線
-
+# conn = pyodbc.connect("driver={SQL Server};server=DESKTOP-542TC90;database=wokershop;uid=ABC;pwd=12345")  #創建連線
+#在家中四樓的電腦測試用作法
+conn = pyodbc.connect("driver={SQL Server};server=DESKTOP-PSC83VE;database=workshop;uid=ABC;pwd=12345") 
 游標 = conn.cursor()    #創建游標
 
 print(游標) #列印游標到螢幕上，確認真的有連線
@@ -44,13 +45,13 @@ def main_Press_button ():
     spl_re1 = sql_re_1[:10]
     label_2.config(text=spl_re1)
     #想要讓下面出現照片
-    # sql_re_2 = sql_re[2]
-    # 第四區塊工具圖片 = io.BytesIO(sql_re_2)
-    # 第四區塊工具圖片1 = Image.open (第四區塊工具圖片)
-    # 第四區塊工具圖片2 = ImageTk.PhotoImage(第四區塊工具圖片1)
-    # label_3 = tk.Label(left_frame,image=第四區塊工具圖片2,width=200,height=200)
+    tool_image_data = sql_re[2]
+    tool_image = Image.open(io.BytesIO(tool_image_data))
+    tool_photo = ImageTk.PhotoImage(tool_image)
+    canvas1.create_image(0, 0, anchor=tk.NW, image=tool_photo)
+    canvas1.image = tool_photo
+    # label_3 = tk.Label(left_frame,image=第四區塊工具圖片2,width=200,height=200)                                                                                  
     # label_3.pack()
-
     按下確定要借按鈕()
 
 def 按下確定要借按鈕():
@@ -64,26 +65,15 @@ def 按下確定要借按鈕():
     tool_image = Tool_details[2]
     tool_image_1 = io.BytesIO(tool_image)
     tool_image_2 = Image.open (tool_image_1)
-    #tool_image_2.show()
-    #tool_image_2.seek(0)
-    #tool_image_2.show() #測試是否真的有抓到圖片，秀出來
-    # 將圖片對象轉換成 Tkinter 的圖片對象
     tool_image_3 = ImageTk.PhotoImage(tool_image_2)
-    
-    #使用Canvas顯示圖片
-    # canvas= tk.Canvas(右側表格,width=100,height=100)
-    # canvas.create_image(0,0,anchor='nw',image=tool_image_3)
-    #canvas.pack()
 
 
-    #print(tool_image_1)
-    #print(tool_image_3)
-    # image_label = tk.Label(右側表格, image=tool_image_3)
-    # image_label.place(relx=0.5, rely=0.8, anchor=tk.CENTER)
     # 將 SQL 查詢結果插入右側表格的新行中
     if Tool_details:
         #右側表格序列 = int(右側表格.index("end")) + 1
-        右側表格.insert("", "end", text="",image=tool_image_3, values=( Tool_details[0],  Tool_details[1], tool_image_3))
+        img = PhotoImage(file="D:\images.png")
+        img = img.subsample(4)
+        右側表格.insert("", "end", text="",image=img, values=(Tool_details[0],  Tool_details[1], tool_image_3))
     else:
     # 如果查詢結果為空，則顯示未找到的消息
         label_2.config(text="未找到相應的工具")
@@ -100,11 +90,11 @@ def command_handler():
     
 主視窗 = tk.Tk()
 主視窗.title("主程序")
-主視窗.geometry("1200x800")  # 设置窗口初始大小为1080x1024像素
+主視窗.geometry("1024x680")  # 设置窗口初始大小为1080x1024像素
 
 # ==============创建一个框架作为分隔框的左侧部分==============
 
-left_frame = tk.Frame(主視窗,bg="#F5F5F5",width=480)
+left_frame = tk.Frame(主視窗,bg="#F5F5F5",width=360)
 
 left_frame.pack(side=tk.LEFT,fill=tk.BOTH,expand=False)
 
@@ -160,21 +150,40 @@ button = tk.Button(text="执行操作", command=GUI_1.print_user_input)
 label.place(relx=0.12, rely=0.45, anchor=tk.CENTER)
 entry3.place(relx=0.12, rely=0.48, anchor=tk.CENTER)
 button.place(relx=0.12, rely=0.51, anchor=tk.CENTER)
-
+                                                                                  
 #==============建立第四區塊
 
 label = tk.Label(text="搜尋結果",font=( 14))
 label_2 = tk.Label(font=(14))
 label.place(relx=0.12, rely=0.57, anchor=tk.CENTER)
-label_2.place(relx=0.12, rely=0.60, anchor=tk.CENTER)
+label_2.place(relx=0.12, rely=0.62, anchor=tk.CENTER)
+canvas1 = tk.Canvas(width=200, height=200)
+canvas1.place(relx=0.12, rely=0.80, anchor=tk.CENTER)
 
-# gui1 = GUI_1.GUI_a()
 
-# gui2 = GUI_1.GUI_b(職員編號)
-
-# gui3 = GUI_1.GUI_c()
 
 # ==============创建一个框架作为分隔框的右侧部分==============
+
+#●○●○●○●○●○●○●○●○●○最基本的顯示環境，看能不能顯示圖片●○●○●○●○●○●○●○
+# L_tree = ttk.Treeview(主視窗)
+# L_tree.pack(side=tk.RIGHT,fill=tk.BOTH,expand=True)
+
+# # Add columns
+# L_tree["columns"] = ("名字", "圖標")
+
+# # Define column headings
+# L_tree.heading("名字", text="名字")
+# L_tree.heading("圖標", text="圖標")
+
+# img = PhotoImage(file="D:\images.png")
+# img = img.subsample(4)
+# L_tree.insert("","end",text="123",open=True,image=img,values=(1,2))
+
+# L_tree.mainloop()
+
+#●○●○●○●○●○●○●○●○●○最基本的顯示環境，看能不能顯示圖片●○●○●○●○●○●○●○結束
+
+
 
 right_frame = tk.Frame(主視窗,bg="white",)
 
@@ -183,12 +192,12 @@ right_frame.pack(side=tk.RIGHT,fill=tk.BOTH,expand=True)
 right_frame.propagate(False)
 # ==========================================================
 style = ttk.Style()
-style.configure("Treeview", font=("Arial", 14))
+style.configure("Treeview", font=("微軟正黑體", 12))
 
 
 右側表格 = ttk.Treeview(right_frame,columns=("第一列","第二列","第三列"))
 
-右側表格.heading("#0",text="序列")
+#右側表格.heading("#0",text="序列")
 
 右側表格.heading("#1",text="工具財編")
 
@@ -198,7 +207,7 @@ style.configure("Treeview", font=("Arial", 14))
 
 # 设置列宽度
 
-右側表格.column("#0",width=80)
+#右側表格.column("#0",width=200)
 
 # 布局Treeview
 

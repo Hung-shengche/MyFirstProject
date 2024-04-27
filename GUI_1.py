@@ -16,7 +16,7 @@ import json
 def print_user_input(tool_id): #把工具財產編號傳入SQL搜尋並回傳
     
     user_input = str(tool_id)  # 獲取使用者輸入的值
-    BBB = pyodbc.connect("driver={SQL Server};server=DESKTOP-542TC90;database=wokershop;uid=ABC;pwd=12345")
+    BBB = pyodbc.connect("driver={SQL Server};server=DESKTOP-PSC83VE;database=workshop;uid=ABC;pwd=12345")
     sql_1 = BBB.execute("SELECT * FROM tool where toolID= ?",  (user_input,)) #傳入資料庫以供搜尋
     tool_0 = sql_1.fetchone()
     # print(tool_1)
@@ -34,7 +34,7 @@ def print_user_input(tool_id): #把工具財產編號傳入SQL搜尋並回傳
 def print_user_input_1(tool_id): #把工具財編搜尋過之後出現在右側
     
     user_input = str(tool_id)  # 獲取使用者輸入的值
-    CCC = pyodbc.connect("driver={SQL Server};server=DESKTOP-542TC90;database=wokershop;uid=ABC;pwd=12345")
+    CCC = pyodbc.connect("driver={SQL Server};server=DESKTOP-PSC83VE;database=workshop;uid=ABC;pwd=12345")
     sql_2 = CCC.execute("SELECT * FROM tool where toolID= ?",  (user_input,)) #傳入資料庫以供搜尋
     工具細項 = sql_2.fetchone()
     CCC.close
