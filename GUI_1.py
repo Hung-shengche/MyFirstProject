@@ -41,6 +41,16 @@ def print_user_input_1(tool_id): #把工具財編搜尋過之後出現在右側
     return 工具細項
 
 
+def print_user_input_2(student_id):
+    user_input = str(student_id)  # 獲取使用者輸入的值
+    if len(user_input) > 9:
+        user_input = user_input[:9]
+    DDD = pyodbc.connect("driver={SQL Server};server=DESKTOP-PSC83VE;database=workshop;uid=ABC;pwd=12345")
+    sql_2 = DDD.execute("SELECT * FROM student where sID= ?",  (user_input,)) #傳入資料庫以供搜尋
+    學生細項 = sql_2.fetchone()
+    DDD.close
+    return 學生細項
+
 # def GUI_b(職員編號):
 
 #     #global entry  # 使用全局變數 entry

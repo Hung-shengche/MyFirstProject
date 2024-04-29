@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 from PIL import Image, ImageTk
 from tkinter import PhotoImage
+import pyodbc
 
 root = tk.Tk()
 root.title("Treeview with Icons")
@@ -16,6 +17,9 @@ tree["columns"] = ("名字", "圖標")
 # Define column headings
 tree.heading("名字", text="名字")
 tree.heading("圖標", text="圖標")
+
+
+
 
 
 img = PhotoImage(file="D:\images.png")
