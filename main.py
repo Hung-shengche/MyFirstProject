@@ -117,7 +117,7 @@ def command_handler():
     
 主視窗 = tk.Tk()
 主視窗.title("主程序")
-主視窗.geometry("1024x680")  # 设置窗口初始大小为1080x1024像素
+主視窗.geometry("1080x680")  # 设置窗口初始大小为1080x680像素
 
 # ==============创建一个框架作为分隔框的左侧部分==============
 
@@ -136,10 +136,10 @@ label.place(relx=0.12, rely=0.03, anchor=tk.CENTER)
 label_1.place(relx=0.16, rely=0.09, anchor=tk.CENTER)
 
 #==============創建第一個區塊
-label = tk.Label(text="掃描工具條碼或手打財編",font=( 14))
+label = tk.Label(text="掃描工具條碼或手打財編",font=("SimSun", 12))
 entry1 = tk.Entry()  # 创建一號输入框
 職員編號 = entry1.get()  # 獲取使用者輸入的值
-button = tk.Button(text="找這個工具", command=main_Press_button)
+button = tk.Button(text="用財產編號查看", command=main_Press_button)
 
 
 #button_還 = tk.Button(text="還這個工具", command=按下確定要借按鈕 )
@@ -147,7 +147,7 @@ button = tk.Button(text="找這個工具", command=main_Press_button)
 # 将 Label、Button 和 Entry 放置在主窗口中
 label.place(relx=0.12, rely=0.17, anchor=tk.CENTER)
 entry1.place(relx=0.12, rely=0.21, anchor=tk.CENTER)
-button.place(relx=0.12, rely=0.25, anchor=tk.CENTER)
+button.place(relx=0.26, rely=0.20, anchor=tk.CENTER)
 #button_還.place(relx=0.15, rely=0.25, anchor=tk.CENTER)
 
 # 綁定按下 Enter 鍵觸發按鈕事件
@@ -155,39 +155,69 @@ button.place(relx=0.12, rely=0.25, anchor=tk.CENTER)
 
 
 #==============創建第二個區塊
-label = tk.Label(text="掃描學生證或手打學號",font=( 14))
+label = tk.Label(text="掃描學生證或手打學號",font=("SimSun", 12))
 entry2 = tk.Entry()  # 创建二號输入框
 學號欄 = entry2.get()  # 獲取使用者輸入的值
-button = tk.Button(text="执行操作", command=main_Press_學號欄)
+button = tk.Button(text="用學生學號查看", command=main_Press_學號欄)
 
 # 将 Label、Button 和 Entry 放置在主窗口中
 label.place(relx=0.12, rely=0.31, anchor=tk.CENTER)
 entry2.place(relx=0.12, rely=0.35, anchor=tk.CENTER)
-button.place(relx=0.12, rely=0.39, anchor=tk.CENTER)
+button.place(relx=0.26, rely=0.25, anchor=tk.CENTER)
 
 
 #==============建立第三區塊
 
-label = tk.Label(text="請輸入聯絡手機",font=( 14))
+label = tk.Label(text="請輸入聯絡手機",font=("SimSun", 12))
 entry3 = tk.Entry()  # 创建三號输入框
 連絡電話 = entry3.get()  # 獲取使用者輸入的值
-button = tk.Button(text="执行操作", command=GUI_1.print_user_input)
+button = tk.Button(text="用手機號碼查看", command=GUI_1.print_user_input)
 
 # 将 Label、Button 和 Entry 放置在主窗口中
 label.place(relx=0.12, rely=0.45, anchor=tk.CENTER)
 entry3.place(relx=0.12, rely=0.48, anchor=tk.CENTER)
-button.place(relx=0.12, rely=0.51, anchor=tk.CENTER)
+button.place(relx=0.26, rely=0.30, anchor=tk.CENTER)
                                                                                   
 #==============建立第四區塊
 
-label = tk.Label(text="搜尋結果",font=( 14))
+label = tk.Label(text="搜尋結果",font=("微軟正黑體", 12))
 label_2 = tk.Label(font=(14))
 label.place(relx=0.12, rely=0.57, anchor=tk.CENTER)
 label_2.place(relx=0.12, rely=0.62, anchor=tk.CENTER)
 canvas1 = tk.Canvas(width=200, height=200)
 canvas1.place(relx=0.12, rely=0.80, anchor=tk.CENTER)
 
+#==============按鈕區塊
 
+列出所有出借中的工具 = tk.Entry()  # 创建三號输入框
+所有出借中工具 = 列出所有出借中的工具.get()  # 獲取使用者輸入的值
+列出所有工具按鈕 = tk.Button(text="列出所有出借中工具", command=GUI_1.print_user_input)
+列出所有工具按鈕.place(relx=0.26, rely=0.35, anchor=tk.CENTER)
+
+列出所有在庫工具 = tk.Entry()  # 创建三號输入框
+所有在庫工具 = 列出所有在庫工具.get()  # 獲取使用者輸入的值
+列出在庫工具按鈕 = tk.Button(text="列出所有在庫的工具", command=GUI_1.print_user_input)
+列出在庫工具按鈕.place(relx=0.26, rely=0.40, anchor=tk.CENTER)
+
+該工具出借紀錄 = tk.Entry()  # 创建三號输入框
+列出該工具的出借紀錄 = 該工具出借紀錄.get()  # 獲取使用者輸入的值
+工具出借紀錄 = tk.Button(text="列出該工具的出借紀錄", command=GUI_1.print_user_input)
+工具出借紀錄.place(relx=0.26, rely=0.45, anchor=tk.CENTER)
+
+該學生借用紀錄 = tk.Entry()  # 创建三號输入框
+列出該學生的借用紀錄 = 該學生借用紀錄.get()  # 獲取使用者輸入的值
+學生借用紀錄 = tk.Button(text="列出該學生的借用紀錄", command=GUI_1.print_user_input)
+學生借用紀錄.place(relx=0.26, rely=0.50, anchor=tk.CENTER)
+
+確定借 = tk.Entry()  # 创建三號输入框
+學生要借 = 確定借.get()  # 獲取使用者輸入的值
+學生借用工具 = tk.Button(text="要借該工具",bg="red", command=GUI_1.print_user_input)
+學生借用工具.place(relx=0.26, rely=0.55, anchor=tk.CENTER)
+
+要還的 = tk.Entry()  # 创建三號输入框
+學生要還 = 要還的.get()  # 獲取使用者輸入的值
+學生要還工具 = tk.Button(text="要來還工具",bg="green", command=GUI_1.print_user_input)
+學生要還工具.place(relx=0.26, rely=0.60, anchor=tk.CENTER)
 
 # ==============创建一个框架作为分隔框的右侧部分==============
 
