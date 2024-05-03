@@ -6,16 +6,24 @@ import GUI_1 as GUI_1
 
 tool_id = input ('輸入財產編號')
 user_input = str(tool_id)  # 獲取使用者輸入的值
+<<<<<<< Updated upstream
 BBB = pyodbc.connect("driver={SQL Server};server=DESKTOP-PSC83VE;database=workshop;uid=ABC;pwd=12345")
+=======
+BBB = pyodbc.connect("driver={SQL Server};server=DESKTOP-542TC90;database=wokershop;uid=ABC;pwd=12345")
+>>>>>>> Stashed changes
 sql_1 = BBB.execute("SELECT * FROM tool where toolID= ?",  (user_input)) #傳入資料庫以供搜尋
 print (BBB)
 tool_0 = sql_1.fetchone()
 tool_1=tool_0[0]
 tool_2=tool_0[1]
 tool_3=tool_0[2]
+<<<<<<< Updated upstream
 tool_4=tool_0[3]
 tool_5=tool_0[4]
 print (tool_1,"\n",tool_2,"\n",tool_4,"\n",tool_5)
+=======
+print (tool_1,"\n",tool_2,"\n",)
+>>>>>>> Stashed changes
 
 
 root = tk.Tk()

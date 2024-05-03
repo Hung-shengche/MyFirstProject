@@ -30,9 +30,9 @@ from tkinter import PhotoImage
 #以上是使用工坊電腦才適用的參數
 
 #在微軟的surface的電腦測試用做法
-# conn = pyodbc.connect("driver={SQL Server};server=DESKTOP-542TC90;database=wokershop;uid=ABC;pwd=12345")  #創建連線
+conn = pyodbc.connect("driver={SQL Server};server=DESKTOP-542TC90;database=wokershop;uid=ABC;pwd=12345")  #創建連線
 #在家中四樓的電腦測試用作法
-conn = pyodbc.connect("driver={SQL Server};server=DESKTOP-PSC83VE;database=workshop;uid=ABC;pwd=12345") 
+#conn = pyodbc.connect("driver={SQL Server};server=DESKTOP-PSC83VE;database=workshop;uid=ABC;pwd=12345") 
 游標 = conn.cursor()    #創建游標
 
 print(游標) #列印游標到螢幕上，確認真的有連線
@@ -135,7 +135,7 @@ label_1 = tk.Label(text="程式設計:洪聖哲", font=("SimSun", 12))
 label.place(relx=0.12, rely=0.03, anchor=tk.CENTER)
 label_1.place(relx=0.16, rely=0.09, anchor=tk.CENTER)
 
-#==============創建第一個區塊
+#==============創建輸入財產編號區塊
 label = tk.Label(text="掃描工具條碼或手打財編",font=("SimSun", 12))
 entry1 = tk.Entry()  # 创建一號输入框
 職員編號 = entry1.get()  # 獲取使用者輸入的值
@@ -154,7 +154,7 @@ button.place(relx=0.26, rely=0.20, anchor=tk.CENTER)
 主視窗.bind('<Return>', main_Press_button)
 
 
-#==============創建第二個區塊
+#==============創建輸入學生證號區塊
 label = tk.Label(text="掃描學生證或手打學號",font=("SimSun", 12))
 entry2 = tk.Entry()  # 创建二號输入框
 學號欄 = entry2.get()  # 獲取使用者輸入的值
@@ -166,18 +166,18 @@ entry2.place(relx=0.12, rely=0.35, anchor=tk.CENTER)
 button.place(relx=0.26, rely=0.25, anchor=tk.CENTER)
 
 
-#==============建立第三區塊
+#==============建立手機號碼輸入區塊
 
 label = tk.Label(text="請輸入聯絡手機",font=("SimSun", 12))
 entry3 = tk.Entry()  # 创建三號输入框
 連絡電話 = entry3.get()  # 獲取使用者輸入的值
 button = tk.Button(text="用手機號碼查看", command=GUI_1.print_user_input)
-
+非必填 = tk.Label(text="(非必填)",font=("SimSun", 9))
 # 将 Label、Button 和 Entry 放置在主窗口中
 label.place(relx=0.12, rely=0.45, anchor=tk.CENTER)
 entry3.place(relx=0.12, rely=0.48, anchor=tk.CENTER)
 button.place(relx=0.26, rely=0.30, anchor=tk.CENTER)
-                                                                                  
+非必填.place(relx=0.12, rely=0.51, anchor=tk.CENTER)                                                                               
 #==============建立第四區塊
 
 label = tk.Label(text="搜尋結果",font=("微軟正黑體", 12))
@@ -219,6 +219,10 @@ canvas1.place(relx=0.12, rely=0.80, anchor=tk.CENTER)
 學生要還工具 = tk.Button(text="要來還工具",bg="green", command=GUI_1.print_user_input)
 學生要還工具.place(relx=0.26, rely=0.60, anchor=tk.CENTER)
 
+新工具 = tk.Entry()  # 创建三號输入框
+創建工具 = 新工具.get()  # 獲取使用者輸入的值
+創建新工具 = tk.Button(text="創建新工具", command=GUI_1.print_user_input)
+創建新工具.place(relx=0.26, rely=0.65, anchor=tk.CENTER)
 # ==============创建一个框架作为分隔框的右侧部分==============
 
 #●○●○●○●○●○●○●○●○●○最基本的顯示環境，看能不能顯示圖片●○●○●○●○●○●○●○
